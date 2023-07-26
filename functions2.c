@@ -24,7 +24,7 @@ int print_pointer(va_list types, char buffer[],
 	UNUSED(size);
 
 	if (addrs == NULL)
-	return (write(1, "(nil)", 5));
+		return (write(1, "(nil)", 5));
 
 	buffer[BUFF_SIZE - 1] = '\0';
 	UNUSED(precision);
@@ -33,9 +33,9 @@ int print_pointer(va_list types, char buffer[],
 
 	while (num_addrs > 0)
 	{
-	buffer[ind--] = map_to[num_addrs % 16];
-	num_addrs /= 16;
-	length++;
+		buffer[ind--] = map_to[num_addrs % 16];
+		num_addrs /= 16;
+		length++;
 	}
 
 	if ((flags & F_ZERO) && !(flags & F_MINUS))
@@ -75,16 +75,16 @@ int print_non_printable(va_list types, char buffer[],
 	UNUSED(size);
 
 	if (str == NULL)
-	return (write(1, "(null)", 6));
+		return (write(1, "(null)", 6));
 
 	while (str[i] != '\0')
 	{
-	if (is_printable(str[i]))
-	buffer[i + offset] = str[i];
-	else
-	offset += append_hexa_code(str[i], buffer, i + offset);
+		if (is_printable(str[i]))
+			buffer[i + offset] = str[i];
+		else
+			offset += append_hexa_code(str[i], buffer, i + offset);
 
-	i++;
+		i++;
 	}
 
 	buffer[i + offset] = '\0';
@@ -119,19 +119,19 @@ int print_reverse(va_list types, char buffer[],
 
 	if (str == NULL)
 	{
-	UNUSED(precision);
+		UNUSED(precision);
 
-	str = ")Null(";
+		str = ")Null(";
 	}
 	for (i = 0; str[i]; i++)
 		;
 
 	for (i = i - 1; i >= 0; i--)
 	{
-	char z = str[i];
+		char z = str[i];
 
-	write(1, &z, 1);
-	count++;
+		write(1, &z, 1);
+		count++;
 	}
 	return (count);
 }
@@ -167,22 +167,22 @@ int print_rot13string(va_list types, char buffer[],
 		str = "(AHYY)";
 	for (i = 0; str[i]; i++)
 	{
-	for (j = 0; in[j]; j++)
-	{
-	if (in[j] == str[i])
-	{
-	x = out[j];
-	write(1, &x, 1);
-	count++;
-	break;
-	}
-	}
-	if (!in[j])
-	{
-	x = str[i];
-	write(1, &x, 1);
-	count++;
-	}
+		for (j = 0; in[j]; j++)
+		{
+			if (in[j] == str[i])
+			{
+				x = out[j];
+				write(1, &x, 1);
+				count++;
+				break;
+			}
+		}
+		if (!in[j])
+		{
+			x = str[i];
+			write(1, &x, 1);
+			count++;
+		}
 	}
 	return (count);
 }

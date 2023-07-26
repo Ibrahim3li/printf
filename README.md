@@ -1,1 +1,4 @@
-readme for printf project made by Ibrahim ALi and Mazen Ehab
+This is printf project
+made by
+Abdelrahman Amer
+Mahmoud Elmatary
